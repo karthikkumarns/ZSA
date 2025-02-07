@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "karthik",
+    "password": "3014",
+    "database": "zsa",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "karthik",
+    "password": "3014",
+    "database": "zsa",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "karthik",
+    "password": "3014",
+    "database": "zsa",
+    "host": "localhost",
+    "dialect": "postgres"
+  }
+}

@@ -4,10 +4,10 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable("otpLogins", {
       id: {
-        type: Sequelize.UUID,
         allowNull: false,
+        autoIncrement: true,
         primaryKey: true,
-        defaultValue: Sequelize.UUIDV4,
+        type: Sequelize.INTEGER,
       },
       user_id: {
         type: Sequelize.UUID,
@@ -18,15 +18,12 @@ module.exports = {
       },
       phone_number: {
         type: Sequelize.STRING,
-        allowNull: false,
+      },
+      otp_token: {
+        type: Sequelize.STRING,
       },
       otp: {
         type: Sequelize.STRING,
-        allowNull: false,
-      },
-      otp_token: {
-        type: Sequelize.UUID,
-        allowNull: false,
       },
       expiry_date: {
         type: Sequelize.DATE,
@@ -38,11 +35,11 @@ module.exports = {
       },
       createdAt: {
         allowNull: false,
-        type: DataTypes.DATE,
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: DataTypes.DATE,
+        type: Sequelize.DATE,
       },
     });
   },

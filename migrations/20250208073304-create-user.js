@@ -9,13 +9,29 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+      phone_number: {
+        type: Sequelize.STRING,
+      },
       name: {
         type: Sequelize.STRING,
       },
-      mobile: {
+      email: {
         type: Sequelize.STRING,
       },
-      email: {
+      address: {
+        type: Sequelize.STRING,
+      },
+      bio: {
+        type: Sequelize.STRING,
+      },
+      ideology: {
+        type: Sequelize.STRING,
+      },
+      is_registered: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
+      user_type: {
         type: Sequelize.STRING,
       },
       createdAt: {

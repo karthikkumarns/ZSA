@@ -14,6 +14,9 @@ app.use(helmet());
 const auth = require("./routes/auth/auth.route");
 app.use("/api/user/auth", auth);
 
+const user = require("./routes/user/user.route");
+app.use("/api/user", user);
+
 app.listen(port, () => {
   console.log(`server is running on ${port}`);
 });

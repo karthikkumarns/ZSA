@@ -78,3 +78,60 @@ exports.Login = async (req, res) => {
     return res.status(500).json({ success: false, message: "Server Error" });
   }
 };
+
+exports.verifyOTP = async (req, res) => {
+  try {
+    const { phone_number, otp } = req.body;
+
+    const otpRecord = await db.otpLogin.findOne({
+      where: { phone_number, otp },
+    });
+
+    if (!otpRecord) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid OTP or OTP expired.",
+      });
+    }
+
+    const now = new Date();
+    if (otpRecord.expiry_date < now) {
+      return res.status(400).json({
+        success: false,
+        message: "OTP has expired. Please request a new one.",
+      });
+    }
+
+    const [user, created] = await db.user.findOrCreate({
+      where: { phone_number },
+      defaults: {
+        name: "",
+        email: "",
+        phone_number: phone_number,
+        is_registered: false, // Fixed spelling
+        user_type: "", // Fixed spelling
+      },
+    });
+
+    if (created) {
+      console.log("User created:", user);
+    }
+
+    await db.otpLogin.update(
+      { is_used: true },
+      { where: { phone_number, otp } }
+    );
+
+    return res.status(200).json({
+      success: true,
+      message: "OTP verified successfully.",
+      user,
+    });
+  } catch (error) {
+    console.error("Error in verifyOTP:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+};

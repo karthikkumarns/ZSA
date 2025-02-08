@@ -13,12 +13,6 @@ module.exports = (sequelize, DataTypes) => {
   }
   otpLogin.init(
     {
-      id: {
-        type: DataTypes.UUID,
-        allowNull: false,
-        primaryKey: true,
-        defaultValue: DataTypes.UUIDV4,
-      },
       user_id: {
         type: DataTypes.UUID,
       },
@@ -28,15 +22,12 @@ module.exports = (sequelize, DataTypes) => {
       },
       phone_number: {
         type: DataTypes.STRING,
-        allowNull: false,
+      },
+      otp_token: {
+        type: DataTypes.STRING,
       },
       otp: {
         type: DataTypes.STRING,
-        allowNull: false,
-      },
-      otp_token: {
-        type: DataTypes.UUID,
-        allowNull: false,
       },
       expiry_date: {
         type: DataTypes.DATE,

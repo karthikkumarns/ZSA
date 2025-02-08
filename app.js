@@ -17,6 +17,9 @@ app.use("/api/user/auth", auth);
 const user = require("./routes/user/user.route");
 app.use("/api/user", user);
 
+const subscribe_request = require("./routes/subscribe-request/subscribe.route");
+app.use("/api", subscribe_request);
+
 app.listen(port, () => {
   console.log(`server is running on ${port}`);
 });
